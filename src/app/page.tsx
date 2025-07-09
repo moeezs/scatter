@@ -131,6 +131,7 @@ export default function Home() {
     },
   ];
 
+  // Helper to detect mobile
   const isMobile = windowSize.width < 700;
   const tileSize = isMobile ? 'w-36 h-24' : 'w-56 h-36';
   const tileGap = isMobile ? 'gap-4' : 'gap-8';
@@ -139,35 +140,39 @@ export default function Home() {
   return (
     <main
       className="relative min-h-screen w-full bg-[#f7efe7] overflow-hidden font-sans flex flex-col"
-      style={{ cursor: 'none' }}
+      style={{ cursor: isMobile ? 'default' : 'none' }}
     >
       <style>{`
-        * { cursor: none !important; }
-        input, textarea, select { cursor: none !important; }
+        ${!isMobile ? '* { cursor: none !important; } input, textarea, select { cursor: none !important; }' : ''}
       `}</style>
-      <Image
-        src="/plane.cur"
-        alt="cursor"
-        width={25}
-        height={25}
-        style={{
-          position: 'fixed',
-          left: cursor.x - 11,
-          top: cursor.y - 11,
-          pointerEvents: 'none',
-          zIndex: 10000,
-          userSelect: 'none',
-          transition: 'filter 0.1s',
-        }}
-        draggable={false}
-        priority
-        unoptimized
-      />
-      <div className="pt-6 pl-4 flex flex-col items-start gap-0 select-none" style={{fontFamily: 'monospace', fontWeight: 700, fontSize: '1.1rem', color: '#18181b', letterSpacing: '-0.01em', textTransform: 'uppercase', lineHeight: 1.1}}>
+      {!isMobile && (
+        <Image
+          src="/plane.cur"
+          alt="cursor"
+          width={25}
+          height={25}
+          style={{
+            position: 'fixed',
+            left: cursor.x - 11,
+            top: cursor.y - 11,
+            pointerEvents: 'none',
+            zIndex: 10000,
+            userSelect: 'none',
+            transition: 'filter 0.1s',
+          }}
+          draggable={false}
+          priority
+          unoptimized
+        />
+      )}
+      <div
+        className={`pt-6 pl-4 flex flex-col items-start gap-0 select-none ${isMobile ? 'pb-2' : ''}`}
+        style={{fontFamily: 'monospace', fontWeight: 700, fontSize: '1.1rem', color: '#18181b', letterSpacing: '-0.01em', textTransform: 'uppercase', lineHeight: 1.1}}
+      >
         <span>{date}</span>
         <span style={{fontWeight: 400, fontSize: '1.5rem', marginTop: 2}}>{time}</span>
       </div>
-      <div className="w-full flex justify-center mt-2 mb-2">
+      <div className={`w-full flex justify-center ${isMobile ? 'mt-6 mb-4' : 'mt-2 mb-2'}`}>
         <h1 className="text-3xl font-extrabold tracking-tight uppercase text-[#18181b]" style={{fontFamily: 'monospace', letterSpacing: '-0.04em'}}>Scatter</h1>
       </div>
       <AnimatePresence>
@@ -182,9 +187,8 @@ export default function Home() {
           </motion.div>
         )}
       </AnimatePresence>
-
       {isLoaded && (
-        <div className={`flex-1 flex flex-col items-center justify-center pb-8 px-2 sm:px-8`}>
+        <div className={`flex-1 flex flex-col items-center justify-center pb-8 ${isMobile ? 'px-2 sm:px-4 mt-2' : 'px-2 sm:px-8 mt-0'}`}>
           {!isMobile ? (
             <div className={`grid grid-cols-3 ${tileGap} place-items-center`}>
               {projects.map((project, i) => (
@@ -214,7 +218,7 @@ export default function Home() {
               ))}
             </div>
           ) : (
-            <div className={`grid grid-cols-2 grid-rows-5 ${tileGap} w-full justify-items-center`}>
+            <div className={`grid grid-cols-2 grid-rows-5 ${tileGap} w-full justify-items-center gap-y-6`}>
               {projects.map((project, i) => (
                 i === 8 ? (
                   <div key={i} className="col-span-2 flex justify-center w-full">
