@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "The Scatter",
+  title: "scatter",
   description: "A collection of scattered thoughts, and ideas.",
 };
 

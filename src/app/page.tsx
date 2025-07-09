@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import Image from 'next/image';
 
 function getFormattedDate() {
   const now = new Date();
@@ -106,23 +107,9 @@ export default function Home() {
 
   // Layout constants
   const isMobile = windowSize.width < 700;
-  const tileCount = 9;
-  const gridCols = isMobile ? 2 : 3;
   const tileSize = isMobile ? 'w-36 h-24' : 'w-56 h-36';
   const tileGap = isMobile ? 'gap-4' : 'gap-8';
   const rotations = [-4, 5, -2, 6, -5, 3, -3, 4, -4]; // toned down
-
-  // For mobile, custom placement for the 9th tile
-  function getMobileTiles() {
-    return Array.from({ length: tileCount }).map((_, i) => {
-      if (i < 8) {
-        return { col: i % 2, row: Math.floor(i / 2), center: false };
-      } else {
-        return { col: 'center', row: 4, center: true };
-      }
-    });
-  }
-  const mobileTiles = getMobileTiles();
 
   return (
     <main className="relative min-h-screen w-full bg-[#f7efe7] overflow-hidden font-sans flex flex-col">
@@ -170,7 +157,7 @@ export default function Home() {
                     transform: `rotate(${rotations[i % rotations.length]}deg)`
                   }}
                 >
-                  <img src={project.image} alt={project.title} className="absolute inset-0 w-full h-full object-cover opacity-40" />
+                  <Image src={project.image} alt={project.title} fill className="object-cover opacity-40" />
                   <div className="relative z-10 w-full flex flex-col items-center justify-center px-2 py-2 bg-white/70">
                     <span className="font-mono font-bold text-base sm:text-lg text-[#18181b] uppercase text-center">
                       {project.title}
@@ -199,7 +186,7 @@ export default function Home() {
                         transform: `rotate(${rotations[i % rotations.length]}deg)`
                       }}
                     >
-                      <img src={project.image} alt={project.title} className="absolute inset-0 w-full h-full object-cover opacity-40" />
+                      <Image src={project.image} alt={project.title} fill className="object-cover opacity-40" />
                       <div className="relative z-10 w-full flex flex-col items-center justify-center px-2 py-2 bg-white/70">
                         <span className="font-mono font-bold text-base text-[#18181b] uppercase text-center">
                           {project.title}
@@ -224,7 +211,7 @@ export default function Home() {
                       transform: `rotate(${rotations[i % rotations.length]}deg)`
                     }}
                   >
-                    <img src={project.image} alt={project.title} className="absolute inset-0 w-full h-full object-cover opacity-40" />
+                    <Image src={project.image} alt={project.title} fill className="object-cover opacity-40" />
                     <div className="relative z-10 w-full flex flex-col items-center justify-center px-2 py-2 bg-white/70">
                       <span className="font-mono font-bold text-base text-[#18181b] uppercase text-center">
                         {project.title}
@@ -239,20 +226,4 @@ export default function Home() {
       )}
     </main>
   );
-}
-
-// Helper for brutalist backgrounds
-function brutalistBg(i: number) {
-  const colors = [
-    'repeating-linear-gradient(135deg, #fff 0 10px, #e0e0e0 10px 20px)',
-    'repeating-linear-gradient(90deg, #fff 0 12px, #e0e0e0 12px 24px)',
-    'repeating-linear-gradient(45deg, #fff 0 8px, #e0e0e0 8px 16px)',
-    'repeating-linear-gradient(0deg, #fff 0 14px, #e0e0e0 14px 28px)',
-    'repeating-linear-gradient(135deg, #fff 0 16px, #e0e0e0 16px 32px)',
-    'repeating-linear-gradient(90deg, #fff 0 10px, #e0e0e0 10px 20px)',
-    'repeating-linear-gradient(45deg, #fff 0 18px, #e0e0e0 18px 36px)',
-    'repeating-linear-gradient(0deg, #fff 0 12px, #e0e0e0 12px 24px)',
-    'repeating-linear-gradient(135deg, #fff 0 20px, #e0e0e0 20px 40px)',
-  ];
-  return colors[i % colors.length];
 }
