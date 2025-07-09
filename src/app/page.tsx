@@ -28,10 +28,8 @@ export default function Home() {
   const [date, setDate] = useState(getFormattedDate());
   const [time, setTime] = useState(getFormattedTime());
   const [windowSize, setWindowSize] = useState({ width: 1200, height: 800 });
-  // Custom cursor state (single instance)
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
   const [cursor, setCursor] = useState({ x: 0, y: 0 });
-  const [isHovering, setIsHovering] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => setIsLoaded(true), 2000);
@@ -51,7 +49,6 @@ export default function Home() {
     };
   }, []);
 
-  // --- Custom plane cursor with springy delay ---
   useEffect(() => {
     const handleMouseMove = (e: MouseEvent) => {
       setMouse({ x: e.clientX, y: e.clientY });
@@ -60,7 +57,6 @@ export default function Home() {
     return () => window.removeEventListener('mousemove', handleMouseMove);
   }, []);
 
-  // Physics animation for cursor (springy follow)
   useEffect(() => {
     let frame: number;
     const animate = () => {
@@ -78,25 +74,6 @@ export default function Home() {
     return () => cancelAnimationFrame(frame);
   }, [mouse.x, mouse.y]);
 
-  // Listen for hover on interactive elements
-  useEffect(() => {
-    const selectors = 'a, button, [role=button], input, textarea, select, summary';
-    const handleEnter = () => setIsHovering(true);
-    const handleLeave = () => setIsHovering(false);
-    const elements = Array.from(document.querySelectorAll(selectors));
-    elements.forEach(el => {
-      el.addEventListener('mouseenter', handleEnter);
-      el.addEventListener('mouseleave', handleLeave);
-    });
-    return () => {
-      elements.forEach(el => {
-        el.removeEventListener('mouseenter', handleEnter);
-        el.removeEventListener('mouseleave', handleLeave);
-      });
-    };
-  }, [isLoaded]);
-
-  // Project data
   const projects = [
     {
       title: 'Coming Soon',
@@ -168,7 +145,7 @@ export default function Home() {
         * { cursor: none !important; }
         input, textarea, select { cursor: none !important; }
       `}</style>
-      <img
+      <Image
         src="/plane.cur"
         alt="cursor"
         width={25}
@@ -183,6 +160,8 @@ export default function Home() {
           transition: 'filter 0.1s',
         }}
         draggable={false}
+        priority
+        unoptimized
       />
       <div className="pt-6 pl-4 flex flex-col items-start gap-0 select-none" style={{fontFamily: 'monospace', fontWeight: 700, fontSize: '1.1rem', color: '#18181b', letterSpacing: '-0.01em', textTransform: 'uppercase', lineHeight: 1.1}}>
         <span>{date}</span>
@@ -306,7 +285,7 @@ export default function Home() {
               <div className="relative flex flex-col items-center">
               <span
                 className={`
-                bg-white border-4 border-[#18181b] shadow-[8px_8px_0_#18181b] rotate-[-8deg] rounded-sm flex items-center justify-center transition-transform group-hover:rotate-0 group-hover:scale-105
+                bg-white border-4 border-[#18181b] shadow-[8px_8px_0_#18181b] rotate-[-8deg] flex items-center justify-center transition-transform group-hover:rotate-0 group-hover:scale-105
                 ${windowSize.width < 700 ? 'w-12 h-12' : 'w-16 h-16'}
                 `}
               >
