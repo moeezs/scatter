@@ -133,7 +133,7 @@ export default function Home() {
       </div>
       {/* Title */}
       <div className="w-full flex justify-center mt-2 mb-2">
-        <h1 className="text-3xl font-extrabold tracking-tight uppercase text-[#18181b]" style={{fontFamily: 'monospace', letterSpacing: '-0.04em'}}>The Scatter</h1>
+        <h1 className="text-3xl font-extrabold tracking-tight uppercase text-[#18181b]" style={{fontFamily: 'monospace', letterSpacing: '-0.04em'}}>Scatter</h1>
       </div>
       {/* Loading Screen */}
       <AnimatePresence>
