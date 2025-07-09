@@ -28,6 +28,10 @@ export default function Home() {
   const [date, setDate] = useState(getFormattedDate());
   const [time, setTime] = useState(getFormattedTime());
   const [windowSize, setWindowSize] = useState({ width: 1200, height: 800 });
+  // Custom cursor state (single instance)
+  const [mouse, setMouse] = useState({ x: 0, y: 0 });
+  const [cursor, setCursor] = useState({ x: 0, y: 0 });
+  const [isHovering, setIsHovering] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => setIsLoaded(true), 2000);
@@ -46,6 +50,51 @@ export default function Home() {
       window.removeEventListener('resize', handleResize);
     };
   }, []);
+
+  // --- Custom plane cursor with springy delay ---
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMouse({ x: e.clientX, y: e.clientY });
+    };
+    window.addEventListener('mousemove', handleMouseMove);
+    return () => window.removeEventListener('mousemove', handleMouseMove);
+  }, []);
+
+  // Physics animation for cursor (springy follow)
+  useEffect(() => {
+    let frame: number;
+    const animate = () => {
+      setCursor(prev => {
+        const dx = mouse.x - prev.x;
+        const dy = mouse.y - prev.y;
+        return {
+          x: prev.x + dx * 0.18,
+          y: prev.y + dy * 0.18,
+        };
+      });
+      frame = requestAnimationFrame(animate);
+    };
+    animate();
+    return () => cancelAnimationFrame(frame);
+  }, [mouse.x, mouse.y]);
+
+  // Listen for hover on interactive elements
+  useEffect(() => {
+    const selectors = 'a, button, [role=button], input, textarea, select, summary';
+    const handleEnter = () => setIsHovering(true);
+    const handleLeave = () => setIsHovering(false);
+    const elements = Array.from(document.querySelectorAll(selectors));
+    elements.forEach(el => {
+      el.addEventListener('mouseenter', handleEnter);
+      el.addEventListener('mouseleave', handleLeave);
+    });
+    return () => {
+      elements.forEach(el => {
+        el.removeEventListener('mouseenter', handleEnter);
+        el.removeEventListener('mouseleave', handleLeave);
+      });
+    };
+  }, [isLoaded]);
 
   // Project data
   const projects = [
@@ -111,7 +160,30 @@ export default function Home() {
   const rotations = [-4, 5, -2, 6, -5, 3, -3, 4, -4];
 
   return (
-    <main className="relative min-h-screen w-full bg-[#f7efe7] overflow-hidden font-sans flex flex-col">
+    <main
+      className="relative min-h-screen w-full bg-[#f7efe7] overflow-hidden font-sans flex flex-col"
+      style={{ cursor: 'none' }}
+    >
+      <style>{`
+        * { cursor: none !important; }
+        input, textarea, select { cursor: none !important; }
+      `}</style>
+      <img
+        src="/plane.cur"
+        alt="cursor"
+        width={25}
+        height={25}
+        style={{
+          position: 'fixed',
+          left: cursor.x - 11,
+          top: cursor.y - 11,
+          pointerEvents: 'none',
+          zIndex: 10000,
+          userSelect: 'none',
+          transition: 'filter 0.1s',
+        }}
+        draggable={false}
+      />
       <div className="pt-6 pl-4 flex flex-col items-start gap-0 select-none" style={{fontFamily: 'monospace', fontWeight: 700, fontSize: '1.1rem', color: '#18181b', letterSpacing: '-0.01em', textTransform: 'uppercase', lineHeight: 1.1}}>
         <span>{date}</span>
         <span style={{fontWeight: 400, fontSize: '1.5rem', marginTop: 2}}>{time}</span>
