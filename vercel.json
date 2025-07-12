@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/reelax/:path*",
+      "destination": "https://reelax-tau.vercel.app/:path*"
+    }
+  ]
+}
