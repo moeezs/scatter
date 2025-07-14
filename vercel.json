@@ -2,11 +2,15 @@
   "rewrites": [
     {
       "source": "/reelax",
-      "destination": "https://reelax-tau.vercel.app/"
+      "destination": "https://reelax-tau.vercel.app"
     },
     {
       "source": "/reelax/:path*",
       "destination": "https://reelax-tau.vercel.app/:path*"
+    },
+    {
+      "source": "/_next/static/:path*",
+      "destination": "https://reelax-tau.vercel.app/_next/static/:path*"
     }
   ]
 }
