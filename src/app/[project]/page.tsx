@@ -4,6 +4,16 @@ import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 
+function setFavicon(url: string) {
+  let link: HTMLLinkElement | null = document.querySelector("link[rel~='icon']");
+  if (!link) {
+    link = document.createElement('link');
+    link.rel = 'icon';
+    document.head.appendChild(link);
+  }
+  link.href = url;
+}
+
 const PROJECTS = {
   reelax: {
     name: 'Reelax',
@@ -26,11 +36,14 @@ export default function ProjectPage() {
       setIsLoading(false);
     } else {
 
+      const faviconUrl = project.url.replace(/\/$/, '') + '/favicon.ico';
+      setFavicon(faviconUrl);
       const timer = setTimeout(() => {
         setIsLoading(false);
       }, 1000);
       return () => clearTimeout(timer);
     }
+
   }, [project]);
 
   const handleIframeLoad = () => {
