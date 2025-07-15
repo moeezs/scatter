@@ -2,15 +2,26 @@
   "rewrites": [
     {
       "source": "/reelax",
-      "destination": "https://reelax-tau.vercel.app"
+      "destination": "https://reelax-tau.vercel.app/"
     },
     {
       "source": "/reelax/:path*",
       "destination": "https://reelax-tau.vercel.app/:path*"
-    },
+    }
+  ],
+  "headers": [
     {
-      "source": "/_next/static/:path*",
-      "destination": "https://reelax-tau.vercel.app/_next/static/:path*"
+      "source": "/reelax/:path*",
+      "headers": [
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "frame-ancestors 'self'"
+        }
+      ]
     }
   ]
 }

@@ -76,10 +76,10 @@ export default function Home() {
 
   const projects = [
     {
-      title: 'Coming Soon',
-      description: 'A new project is on the way!',
+      title: 'Reelax',
+      description: 'A relaxing video streaming experience',
       image: '/paper.png',
-      link: '#',
+      link: '/reelax',
     },
     {
       title: 'Coming Soon',
