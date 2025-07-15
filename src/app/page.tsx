@@ -76,16 +76,18 @@ export default function Home() {
 
   const projects = [
     {
-      title: 'Reelax',
-      description: 'A relaxing video streaming experience',
+      title: 'Coming July 16th',
+      description: 'Stay tuned for the launch of Reelax',
       image: '/paper.png',
-      link: '/reelax',
+      link: '#',
+      external: false,
     },
     {
       title: 'Coming Soon',
       description: 'Stay tuned for updates.',
       image: '/paper.png',
       link: '#',
+      external: false,
     },
     {
       title: 'Coming Soon',
@@ -195,8 +197,8 @@ export default function Home() {
                 <motion.a
                   key={i}
                   href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  target={project.external ? "_blank" : "_self"}
+                  rel={project.external ? "noopener noreferrer" : undefined}
                   initial={{ opacity: 0, scale: 0.92, rotate: rotations[i % rotations.length] * 2 }}
                   animate={{ opacity: 1, scale: 1, rotate: rotations[i % rotations.length] }}
                   transition={{ delay: 0.2 + i * 0.07, type: 'spring', stiffness: 100, damping: 20 }}
@@ -224,8 +226,8 @@ export default function Home() {
                   <div key={i} className="col-span-2 flex justify-center w-full">
                     <motion.a
                       href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                      target={project.external ? "_blank" : "_self"}
+                      rel={project.external ? "noopener noreferrer" : undefined}
                       initial={{ opacity: 0, scale: 0.92, rotate: rotations[i % rotations.length] * 2 }}
                       animate={{ opacity: 1, scale: 1, rotate: rotations[i % rotations.length] }}
                       transition={{ delay: 0.2 + i * 0.07, type: 'spring', stiffness: 100, damping: 20 }}
@@ -249,8 +251,8 @@ export default function Home() {
                   <motion.a
                     key={i}
                     href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                    target={project.external ? "_blank" : "_self"}
+                    rel={project.external ? "noopener noreferrer" : undefined}
                     initial={{ opacity: 0, scale: 0.92, rotate: rotations[i % rotations.length] * 2 }}
                     animate={{ opacity: 1, scale: 1, rotate: rotations[i % rotations.length] }}
                     transition={{ delay: 0.2 + i * 0.07, type: 'spring', stiffness: 100, damping: 20 }}
