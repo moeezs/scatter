@@ -76,14 +76,14 @@ export default function Home() {
 
   const projects = [
     {
-      title: 'Coming July 16th',
-      description: 'Stay tuned for the launch of Reelax',
-      image: '/paper.png',
-      link: '#',
+      title: 'Reelax',
+      description: 'A movie recommendation engine that helps you find the perfect film that ends before you go to bed.',
+      image: '/scatters/reelax.png',
+      link: '/reelax',
       external: false,
     },
     {
-      title: 'Coming Soon',
+      title: 'Coming July 23th',
       description: 'Stay tuned for updates.',
       image: '/paper.png',
       link: '#',
@@ -210,8 +210,8 @@ export default function Home() {
                     transform: `rotate(${rotations[i % rotations.length]}deg)`
                   }}
                 >
-                  <Image src={project.image} alt={project.title} fill className="object-cover opacity-40" />
-                  <div className="relative z-10 w-full flex flex-col items-center justify-center px-2 py-2 bg-white/70">
+                  <Image src={project.image} alt={project.title} fill className="object-cover opacity-100" />
+                  <div className="relative z-10 w-full flex flex-col items-center justify-center px-2 py-2 bg-white/90">
                     <span className="font-mono font-bold text-base sm:text-lg text-[#18181b] uppercase text-center">
                       {project.title}
                     </span>
@@ -239,8 +239,8 @@ export default function Home() {
                         transform: `rotate(${rotations[i % rotations.length]}deg)`
                       }}
                     >
-                      <Image src={project.image} alt={project.title} fill className="object-cover opacity-40" />
-                      <div className="relative z-10 w-full flex flex-col items-center justify-center px-2 py-2 bg-white/70">
+                      <Image src={project.image} alt={project.title} fill className="object-cover opacity-100" />
+                      <div className="relative z-10 w-full flex flex-col items-center justify-center px-2 py-2 bg-white/90">
                         <span className="font-mono font-bold text-base text-[#18181b] uppercase text-center">
                           {project.title}
                         </span>
@@ -264,8 +264,8 @@ export default function Home() {
                       transform: `rotate(${rotations[i % rotations.length]}deg)`
                     }}
                   >
-                    <Image src={project.image} alt={project.title} fill className="object-cover opacity-40" />
-                    <div className="relative z-10 w-full flex flex-col items-center justify-center px-2 py-2 bg-white/70">
+                    <Image src={project.image} alt={project.title} fill className="object-cover opacity-100" />
+                    <div className="relative z-10 w-full flex flex-col items-center justify-center px-2 py-2 bg-white/90">
                       <span className="font-mono font-bold text-base text-[#18181b] uppercase text-center">
                         {project.title}
                       </span>
