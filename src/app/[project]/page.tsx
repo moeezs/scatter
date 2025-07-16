@@ -3,24 +3,7 @@
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
-
-function setFavicon(url: string) {
-  let link: HTMLLinkElement | null = document.querySelector("link[rel~='icon']");
-  if (!link) {
-    link = document.createElement('link');
-    link.rel = 'icon';
-    document.head.appendChild(link);
-  }
-  link.href = url;
-}
-
-const PROJECTS = {
-  reelax: {
-    name: 'Reelax',
-    url: 'https://reelax-tau.vercel.app',
-    description: 'A relaxing video streaming experience'
-  },
-};
+import { PROJECTS } from './projects';
 
 export default function ProjectPage() {
   const params = useParams();
@@ -34,26 +17,15 @@ export default function ProjectPage() {
     if (!project) {
       setError('Project not found');
       setIsLoading(false);
-    } else {
-
-      const faviconUrl = project.url.replace(/\/$/, '') + '/favicon.ico';
-      setFavicon(faviconUrl);
-      const timer = setTimeout(() => {
-        setIsLoading(false);
-      }, 1000);
-      return () => clearTimeout(timer);
+      return;
     }
 
+    const timer = setTimeout(() => setIsLoading(false), 1000);
+    return () => clearTimeout(timer);
   }, [project]);
 
-  const handleIframeLoad = () => {
-    setIsLoading(false);
-  };
-
-  const handleIframeError = () => {
-    setError('Failed to load project');
-    setIsLoading(false);
-  };
+  const handleIframeLoad = () => setIsLoading(false);
+  const handleIframeError = () => setError('Failed to load project');
 
   if (!project) {
     return (
@@ -76,7 +48,7 @@ export default function ProjectPage() {
     <div className="w-screen h-screen overflow-hidden">
       {isLoading && (
         <div className="fixed inset-0 bg-black flex items-center justify-center z-50">
-          <div className="animate-spin w-8 h-8 border-2 border-white/20 border-t-white rounded-full"></div>
+          <div className="animate-spin w-8 h-8 border-2 border-white/20 border-t-white rounded-full" />
         </div>
       )}
 
@@ -102,7 +74,7 @@ export default function ProjectPage() {
           className="w-full h-full border-0 block"
           onLoad={handleIframeLoad}
           onError={handleIframeError}
-          title={`${project.name} Application`}
+          title={project.name}
           allow="fullscreen; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
           sandbox="allow-same-origin allow-scripts allow-forms allow-popups allow-top-navigation allow-downloads allow-presentation"
           referrerPolicy="origin"
