@@ -83,14 +83,14 @@ export default function Home() {
       external: false,
     },
     {
-      title: 'Coming July 23th',
-      description: 'Stay tuned for updates.',
-      image: '/paper.png',
-      link: '#',
+      title: 'Rainbolt',
+      description: 'A fun way to discover exactly where an image was taken.',
+      image: '/scatters/rainbolt.png',
+      link: '/rainbolt',
       external: false,
     },
     {
-      title: 'Coming Soon',
+      title: 'Coming July 30th',
       description: 'Exciting things are coming.',
       image: '/paper.png',
       link: '#',
@@ -133,7 +133,6 @@ export default function Home() {
     },
   ];
 
-  // Helper to detect mobile
   const isMobile = windowSize.width < 700;
   const tileSize = isMobile ? 'w-36 h-24' : 'w-56 h-36';
   const tileGap = isMobile ? 'gap-4' : 'gap-8';
