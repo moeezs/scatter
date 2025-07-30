@@ -90,13 +90,14 @@ export default function Home() {
       external: false,
     },
     {
-      title: 'Coming July 30th',
-      description: 'Exciting things are coming.',
-      image: '/paper.png',
-      link: '#',
+      title: 'Stickerly',
+      description: 'A platform to create custom stickers.',
+      image: '/scatters/stickerly.png',
+      link: '/stickerly',
+      external: false,
     },
     {
-      title: 'Coming Soon',
+      title: 'Coming August 6th',
       description: 'Watch this space.',
       image: '/paper.png',
       link: '#',
@@ -168,13 +169,13 @@ export default function Home() {
       )}
       <div
         className={`pt-6 pl-4 flex flex-col items-start gap-0 select-none ${isMobile ? 'pb-2' : ''}`}
-        style={{fontFamily: 'monospace', fontWeight: 700, fontSize: '1.1rem', color: '#18181b', letterSpacing: '-0.01em', textTransform: 'uppercase', lineHeight: 1.1}}
+        style={{ fontFamily: 'monospace', fontWeight: 700, fontSize: '1.1rem', color: '#18181b', letterSpacing: '-0.01em', textTransform: 'uppercase', lineHeight: 1.1 }}
       >
         <span>{date}</span>
-        <span style={{fontWeight: 400, fontSize: '1.5rem', marginTop: 2}}>{time}</span>
+        <span style={{ fontWeight: 400, fontSize: '1.5rem', marginTop: 2 }}>{time}</span>
       </div>
       <div className={`w-full flex justify-center ${isMobile ? 'mt-6 mb-4' : 'mt-2 mb-2'}`}>
-        <h1 className="text-3xl font-extrabold tracking-tight uppercase text-[#18181b]" style={{fontFamily: 'monospace', letterSpacing: '-0.04em'}}>Scatter</h1>
+        <h1 className="text-3xl font-extrabold tracking-tight uppercase text-[#18181b]" style={{ fontFamily: 'monospace', letterSpacing: '-0.04em' }}>Scatter</h1>
       </div>
       <AnimatePresence>
         {!isLoaded && (
@@ -274,35 +275,35 @@ export default function Home() {
               ))}
             </div>
           )}
-        
-        <AnimatePresence>
+
+          <AnimatePresence>
             {isLoaded && (
-            <motion.a
-              href="https://www.moeezs.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="fixed bottom-6 right-6 z-50 group"
-              style={{ pointerEvents: 'auto' }}
-              initial={{ y: 200, x: 120, rotate: -30, opacity: 0 }}
-              animate={{ y: -20, x: -20, rotate: -8, opacity: 1 }}
-              transition={{ type: 'spring', stiffness: 300, damping: 18, mass: 0.7, delay: 0.5 }}
-            >
-              <div className="relative flex flex-col items-center">
-              <span
-                className={`
+              <motion.a
+                href="https://www.moeezs.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="fixed bottom-6 right-6 z-50 group"
+                style={{ pointerEvents: 'auto' }}
+                initial={{ y: 200, x: 120, rotate: -30, opacity: 0 }}
+                animate={{ y: -20, x: -20, rotate: -8, opacity: 1 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 18, mass: 0.7, delay: 0.5 }}
+              >
+                <div className="relative flex flex-col items-center">
+                  <span
+                    className={`
                 bg-white border-4 border-[#18181b] shadow-[8px_8px_0_#18181b] rotate-[-8deg] flex items-center justify-center transition-transform group-hover:rotate-0 group-hover:scale-105
                 ${windowSize.width < 700 ? 'w-12 h-12' : 'w-16 h-16'}
                 `}
-              >
-                <span className={`font-mono font-bold text-[#18181b] select-none ${windowSize.width < 700 ? 'text-lg' : 'text-2xl'}`}>ams</span>
-              </span>
-              </div>
-            </motion.a>
+                  >
+                    <span className={`font-mono font-bold text-[#18181b] select-none ${windowSize.width < 700 ? 'text-lg' : 'text-2xl'}`}>ams</span>
+                  </span>
+                </div>
+              </motion.a>
             )}
-        </AnimatePresence>
-    </div>
-  )
-} 
+          </AnimatePresence>
+        </div>
+      )
+      }
 
     </main>
   );

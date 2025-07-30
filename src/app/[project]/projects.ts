@@ -9,4 +9,9 @@ export const PROJECTS = {
     url: 'https://rainbolt-eight.vercel.app',
     description: 'A fun way to discover exactly where an image was taken'
   },
+  stickerly: {
+    name: 'Stickerly',
+    url: 'https://stickerly-sigma.vercel.app/',
+    description: 'A platform to create custom stickers'
+  },
 };
