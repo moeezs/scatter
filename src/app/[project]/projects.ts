@@ -14,4 +14,9 @@ export const PROJECTS = {
     url: 'https://stickerly-sigma.vercel.app/',
     description: 'A platform to create custom stickers'
   },
+  vinylize: {
+    name: 'Vinylize',
+    url: 'https://vinylize-eta.vercel.app/',
+    description: 'A music discovery platform that curates vinyl records'
+  },
 };
