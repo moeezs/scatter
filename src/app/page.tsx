@@ -104,13 +104,13 @@ export default function Home() {
       external: false,
     },
     {
-      title: 'Coming August 14th (a day late)',
-      description: 'Something cool is brewing.',
-      image: '/paper.png',
-      link: '#',
+      title: 'Azaadi',
+      description: 'A fun independance celebration app',
+      image: '/scatters/azaadi.png',
+      link: '/azaadi',
     },
     {
-      title: 'Coming Soon',
+      title: 'Coming August 21st',
       description: 'More soon!',
       image: '/paper.png',
       link: '#',

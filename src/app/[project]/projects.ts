@@ -19,4 +19,9 @@ export const PROJECTS = {
     url: 'https://vinylize-eta.vercel.app/',
     description: 'A music discovery platform that curates vinyl records'
   },
+  azaadi: {
+    name: 'Azaadi',
+    url: 'https://azaadi-tau.vercel.app/',
+    description: 'A fun independance celebration app'
+  }
 };
