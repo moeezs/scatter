@@ -110,7 +110,7 @@ export default function Home() {
       link: '/azaadi',
     },
     {
-      title: 'Coming August 21st',
+      title: 'Coming Sep 4th',
       description: 'More soon!',
       image: '/paper.png',
       link: '#',
