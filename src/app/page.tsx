@@ -25,13 +25,15 @@ function getFormattedTime() {
 
 export default function Home() {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [date, setDate] = useState(getFormattedDate());
-  const [time, setTime] = useState(getFormattedTime());
+  const [date, setDate] = useState('');
+  const [time, setTime] = useState('');
   const [windowSize, setWindowSize] = useState({ width: 1200, height: 800 });
   const [mouse, setMouse] = useState({ x: 0, y: 0 });
   const [cursor, setCursor] = useState({ x: 0, y: 0 });
 
   useEffect(() => {
+    setDate(getFormattedDate());
+    setTime(getFormattedTime());
     const timer = setTimeout(() => setIsLoaded(true), 2000);
     const interval = setInterval(() => {
       setDate(getFormattedDate());
@@ -109,30 +111,6 @@ export default function Home() {
       image: '/scatters/azaadi.png',
       link: '/azaadi',
     },
-    {
-      title: 'Coming Sep 4th',
-      description: 'More soon!',
-      image: '/paper.png',
-      link: '#',
-    },
-    {
-      title: 'Coming Soon',
-      description: 'Stay tuned.',
-      image: '/paper.png',
-      link: '#',
-    },
-    {
-      title: 'Coming Soon',
-      description: 'Almost here.',
-      image: '/paper.png',
-      link: '#',
-    },
-    {
-      title: 'Coming Soon',
-      description: 'Launching soon.',
-      image: '/paper.png',
-      link: '#',
-    },
   ];
 
   const isMobile = windowSize.width < 700;
@@ -193,7 +171,7 @@ export default function Home() {
       {isLoaded && (
         <div className={`flex-1 flex flex-col items-center justify-center pb-8 ${isMobile ? 'px-2 sm:px-4 mt-2' : 'px-2 sm:px-8 mt-0'}`}>
           {!isMobile ? (
-            <div className={`grid grid-cols-3 ${tileGap} place-items-center`}>
+            <div className={`flex flex-wrap justify-center max-w-4xl ${tileGap}`}>
               {projects.map((project, i) => (
                 <motion.a
                   key={i}
@@ -221,9 +199,9 @@ export default function Home() {
               ))}
             </div>
           ) : (
-            <div className={`grid grid-cols-2 grid-rows-5 ${tileGap} w-full justify-items-center gap-y-6`}>
+            <div className={`grid grid-cols-2 grid-rows-3 ${tileGap} w-full justify-items-center gap-y-6`}>
               {projects.map((project, i) => (
-                i === 8 ? (
+                i === 4 ? (
                   <div key={i} className="col-span-2 flex justify-center w-full">
                     <motion.a
                       href={project.link}
